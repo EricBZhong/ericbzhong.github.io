@@ -58,6 +58,13 @@ export function Hero() {
         animate="show"
         className="max-w-2xl"
       >
+        <motion.div variants={fadeUp} className="mb-6">
+          <img
+            src="/eric.jpg"
+            alt="Eric Zhong"
+            className="h-24 w-24 rounded-full object-cover"
+          />
+        </motion.div>
         <motion.h1
           variants={fadeUp}
           className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
