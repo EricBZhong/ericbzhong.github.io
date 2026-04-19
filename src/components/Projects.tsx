@@ -7,7 +7,8 @@ interface Project {
   description: string;
   bullets: string[];
   tech: string[];
-  link?: { label: string; href: string };
+  href: string;
+  linkLabel: string;
 }
 
 const projects: Project[] = [
@@ -32,7 +33,8 @@ const projects: Project[] = [
       "GCP Cloud Run",
       "Terraform",
     ],
-    link: { label: "getcolby.com", href: "https://getcolby.com" },
+    href: "https://getcolby.com",
+    linkLabel: "getcolby.com",
   },
   {
     title: "Personal CTO Dashboard",
@@ -55,6 +57,8 @@ const projects: Project[] = [
       "Claude CLI",
       "Docker",
     ],
+    href: "https://github.com/GetColby/Personal-CTO-v1",
+    linkLabel: "GitHub",
   },
   {
     title: "Eric Chatbot",
@@ -76,10 +80,8 @@ const projects: Project[] = [
       "Jinja2",
       "Vanilla JS",
     ],
-    link: {
-      label: "GitHub",
-      href: "https://github.com/EricBZhong/eric-chatbot",
-    },
+    href: "https://github.com/EricBZhong/eric-chatbot",
+    linkLabel: "GitHub",
   },
 ];
 
@@ -108,7 +110,12 @@ export function Projects() {
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {projects.map((project, i) => (
             <FadeIn key={project.title} delay={i * 0.1}>
-              <div className="group flex h-full flex-col rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-lg">
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full flex-col rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-lg cursor-pointer"
+              >
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="text-lg font-semibold text-foreground">
@@ -118,17 +125,9 @@ export function Projects() {
                       {project.role}
                     </span>
                   </div>
-                  {project.link && (
-                    <a
-                      href={project.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted transition-colors hover:text-accent"
-                      aria-label={`Visit ${project.title}`}
-                    >
-                      <ArrowIcon />
-                    </a>
-                  )}
+                  <span className="text-muted transition-colors group-hover:text-accent">
+                    <ArrowIcon />
+                  </span>
                 </div>
 
                 <p className="mt-4 text-sm leading-relaxed text-muted">
@@ -155,19 +154,12 @@ export function Projects() {
                       </span>
                     ))}
                   </div>
-                  {project.link && (
-                    <a
-                      href={project.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
-                    >
-                      {project.link.label}
-                      <ArrowIcon />
-                    </a>
-                  )}
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
+                    {project.linkLabel}
+                    <ArrowIcon />
+                  </span>
                 </div>
-              </div>
+              </a>
             </FadeIn>
           ))}
         </div>

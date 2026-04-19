@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const navLinks = [
   { label: "Projects", href: "#projects" },
@@ -13,28 +13,42 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const isScrolled = window.scrollY > 20;
+        if (isScrolled !== scrolledRef.current) {
+          scrolledRef.current = isScrolled;
+          setScrolled(isScrolled);
+        }
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        setActiveSection(entry.target.id);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
+    const observer = new IntersectionObserver(handleIntersection, {
+      rootMargin: "-40% 0px -55% 0px",
+    });
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [handleIntersection]);
 
   return (
     <header

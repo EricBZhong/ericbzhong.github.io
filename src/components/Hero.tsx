@@ -1,21 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
-
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
@@ -52,39 +36,37 @@ function MailIcon() {
 export function Hero() {
   return (
     <section className="flex min-h-[100dvh] items-center justify-center px-6">
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-        className="max-w-2xl"
-      >
-        <motion.div variants={fadeUp} className="mb-6">
+      <div className="max-w-2xl">
+        <div className="hero-stagger mb-6" style={{ "--i": 0 } as React.CSSProperties}>
           <img
             src="/eric.jpg"
             alt="Eric Zhong"
             className="h-24 w-24 rounded-full object-cover"
           />
-        </motion.div>
-        <motion.h1
-          variants={fadeUp}
-          className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+        </div>
+        <h1
+          className="hero-stagger text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+          style={{ "--i": 1 } as React.CSSProperties}
         >
           Eric Zhong
-        </motion.h1>
-        <motion.p
-          variants={fadeUp}
-          className="mt-4 text-xl text-muted sm:text-2xl"
+        </h1>
+        <p
+          className="hero-stagger mt-4 text-xl text-muted sm:text-2xl"
+          style={{ "--i": 2 } as React.CSSProperties}
         >
           I build products from zero to one.
-        </motion.p>
-        <motion.p
-          variants={fadeUp}
-          className="mt-3 text-base text-muted sm:text-lg"
+        </p>
+        <p
+          className="hero-stagger mt-3 text-base text-muted sm:text-lg"
+          style={{ "--i": 3 } as React.CSSProperties}
         >
           Co-Founder &amp; CTO at Colby. Previously at Arta Finance and Coinbase.
-        </motion.p>
+        </p>
 
-        <motion.div variants={fadeUp} className="mt-8 flex items-center gap-5">
+        <div
+          className="hero-stagger mt-8 flex items-center gap-5"
+          style={{ "--i": 4 } as React.CSSProperties}
+        >
           <a
             href="https://github.com/EricBZhong"
             target="_blank"
@@ -110,18 +92,14 @@ export function Hero() {
           >
             <MailIcon />
           </a>
-        </motion.div>
+        </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          variants={fadeUp}
-          className="mt-16 flex justify-start"
+        <div
+          className="hero-stagger mt-16 flex justify-start"
+          style={{ "--i": 5 } as React.CSSProperties}
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-muted/40"
-          >
+          <div className="scroll-bounce text-muted/40">
             <svg
               width="24"
               height="24"
@@ -134,9 +112,9 @@ export function Hero() {
             >
               <path d="m6 9 6 6 6-6" />
             </svg>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
