@@ -74,7 +74,7 @@ export function Hero() {
           variants={fadeUp}
           className="mt-3 text-base text-muted sm:text-lg"
         >
-          Co-Founder &amp; CTO at Colby. Previously Arta Finance, Coinbase.
+          Co-Founder &amp; CTO at Colby. Previously at Arta Finance and Coinbase.
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-8 flex items-center gap-5">

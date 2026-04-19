@@ -10,29 +10,29 @@ export function About() {
         <div className="mt-8 space-y-5 text-base leading-relaxed text-muted">
           <FadeIn>
             <p>
-              I&apos;m a founding engineer who lives at the intersection of
-              shipping fast and building right. After studying Engineering
-              Physics at Berkeley, I cut my teeth at Coinbase and Arta
-              Finance&mdash;learning how to build at startup speed while
-              operating in regulated industries. Then I co-founded Colby, where
-              I built the entire technical platform from scratch: AI agents,
-              Chrome extensions, cloud infrastructure, enterprise
-              security&mdash;the full stack.
+              I studied Engineering Physics at Berkeley, which is a fancy way of
+              saying I liked math but also wanted to build things. After school I
+              went to Coinbase and then Arta Finance, where I got to work on
+              real systems in regulated industries&mdash;the kind where if your
+              code is wrong, someone&apos;s money is wrong. Then I co-founded
+              Colby and built the whole platform myself: the AI agents, the
+              Chrome extension, the cloud infra, the security layer, everything.
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p>
-              I&apos;m drawn to early-stage companies where I can own the
-              technical vision end-to-end. I&apos;ve operated across every part
-              of the development cycle&mdash;architecture, frontend, backend,
-              AI/ML, infrastructure, security, compliance, and testing. I thrive
-              in ambiguity, move quickly, and care deeply about the craft.
+              I like being early. Early-stage companies where there&apos;s no
+              playbook and you have to figure it out as you go. I&apos;ve ended
+              up touching every part of the stack out of necessity&mdash;frontend,
+              backend, AI, infra, security, compliance, testing. Not because I
+              set out to be a generalist, but because when you&apos;re employee
+              one, there&apos;s nobody else to do it.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p>
-              Outside of work, you&apos;ll find me powerlifting, playing piano,
-              cooking, or hiking.
+              When I&apos;m not coding I&apos;m usually powerlifting, playing
+              piano, cooking, or somewhere on a trail.
             </p>
           </FadeIn>
         </div>

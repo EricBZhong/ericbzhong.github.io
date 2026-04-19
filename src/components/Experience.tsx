@@ -15,9 +15,9 @@ const timeline: TimelineEntry[] = [
     role: "Co-Founder & CTO",
     dates: "Jun 2025 – Present",
     bullets: [
-      "Built the entire technical platform from scratch — AI agents, Chrome extension, cloud infra, security",
-      "Accepted into Berkeley SkyDeck Pad-13; demoed to firms managing $30T+ AUM",
-      "Implementation trials ($1T+ AUM) launching May 2026",
+      "Built everything from scratch — the AI agents, Chrome extension, cloud infra, auth, security, all of it",
+      "Got into Berkeley SkyDeck Pad-13 and started demoing to firms managing $30T+ AUM, which was a wild experience",
+      "Kicking off implementation trials with $1T+ AUM firms in May 2026",
     ],
   },
   {
@@ -25,7 +25,7 @@ const timeline: TimelineEntry[] = [
     role: "Software Engineer",
     dates: "Sep 2024 – Jun 2025",
     bullets: [
-      "Full-stack engineering at an early-stage startup (under NDA)",
+      "Full-stack eng at an early-stage startup. Can't say much — NDA",
     ],
   },
   {
@@ -33,9 +33,9 @@ const timeline: TimelineEntry[] = [
     role: "Software Engineer, Risk + Research",
     dates: "May 2023 – Aug 2024",
     bullets: [
-      "Full-stack engineer at AI-powered digital wealth management platform ($90M Series A, backed by Eric Schmidt, Sundar Pichai)",
-      "Built internal tooling: admin console (Firebase, Spanner, Angular) saving hundreds of engineering hours",
-      "Developed tax-lot optimization algorithms and LLM-powered natural-language queries across siloed codebases",
+      "Joined a digital wealth management platform backed by Eric Schmidt and Sundar Pichai ($90M Series A). Learned a lot about operating in regulated finance",
+      "Built an admin console on Firebase + Spanner + Angular that let non-engineers track trade volume and fix financial issues — saved the eng team a ton of hours",
+      "Wrote tax-lot optimization algorithms and added LLM-powered search so people could query across codebases in plain English",
     ],
   },
   {
@@ -50,9 +50,9 @@ const timeline: TimelineEntry[] = [
     role: "Software Engineer, Web3 Team",
     dates: "Mar 2022 – Jun 2022",
     bullets: [
-      "Redis caching reducing Wallet API latency 30x (3s to 100ms)",
-      "Golang API integrations for cross-chain bridge and trade quoting",
-      "Datadog monitoring dashboards for production issue remediation",
+      "Added Redis caching to the Wallet API — dropped p99 latency from 3s to 100ms, which was a 30x improvement",
+      "Built Golang integrations for cross-chain bridge and trade quoting APIs",
+      "Set up Datadog dashboards that actually helped us catch production issues before users did",
     ],
   },
   {
@@ -60,14 +60,14 @@ const timeline: TimelineEntry[] = [
     role: "Software Development Intern",
     dates: "Jul 2020 – Mar 2022",
     bullets: [
-      "Telehealth mobile app (React, Ionic) + Django website with SageMaker NLP",
+      "Built a telehealth mobile app in React/Ionic and a Django website with SageMaker NLP — my first real engineering job",
     ],
   },
   {
     company: "UC Berkeley",
     role: "B.S. Engineering Physics",
     dates: "2017 – 2021",
-    bullets: ["Minors: EECS, Environmental Economics & Policy"],
+    bullets: ["Minors in EECS and Environmental Economics & Policy"],
     isEducation: true,
   },
 ];

@@ -15,12 +15,12 @@ const projects: Project[] = [
     title: "Colby AI",
     role: "Co-Founder & CTO",
     description:
-      "AI-powered sales assistant for asset management distribution teams. Voice-first Chrome Extension that automates Salesforce data entry, generates reports, preps for meetings, and surfaces research.",
+      "Salespeople at asset management firms spend half their day typing into Salesforce instead of actually selling. We built a Chrome Extension that does it for them — data entry, reports, meeting prep, research — all through voice and chat.",
     bullets: [
-      "3-tier AI agent system (Google ADK, Gemini 3.1 Pro) with 7 specialist sub-agents orchestrating CRM CRUD, financial research, and SQL analytics",
-      "Real-time SSE streaming between Chrome Extension (React 19, TypeScript) and FastAPI backend",
-      "Enterprise security: Salesforce OAuth 2.0, AES-256-GCM encryption, SOC 2 audit readiness",
-      "Berkeley SkyDeck Pad-13; demoed to firms managing $30T+ in combined AUM",
+      "Designed a 3-tier agent architecture with 7 specialist sub-agents. Each one handles a different slice (CRM ops, financial research, SQL analytics) so the system doesn't trip over itself",
+      "SSE streaming with bidirectional tool execution — the agent can reach into Salesforce through the browser in real time, which was way harder than it sounds",
+      "Full security stack because these firms manage trillions and won't touch you without it: OAuth 2.0, AES-256-GCM encryption, SOC 2 readiness",
+      "Got into Berkeley SkyDeck Pad-13. Demoed to firms managing $30T+ combined AUM. Still kind of surreal",
     ],
     tech: [
       "Python",
@@ -38,12 +38,12 @@ const projects: Project[] = [
     title: "Personal CTO Dashboard",
     role: "Solo Project",
     description:
-      "AI-powered engineering orchestrator that turns natural language instructions into production-ready pull requests. Type a task, CTO agent gathers context, spawns parallel engineer agents, each writes code, runs tests, opens PR.",
+      "I wanted to see what happens if you give AI agents real autonomy over a codebase. You type a task in plain English, a CTO agent figures out what needs to happen, spins up engineer agents in parallel, and they each clone the repo, write code, run tests, and open a PR.",
     bullets: [
-      "10+ concurrent AI agents with process isolation, real-time WebSocket orchestration, and autonomous decision-making",
-      "15-page dashboard with Kanban board, live engineer terminals, PR review, SOC 2 compliance, analytics",
-      "Multi-channel access: web dashboard, Slack, SMS/voice (Twilio)",
-      "Token budgets, failure safeguards, config versioning with rollback, 12 chaos monkey test scenarios",
+      "10+ agents running concurrently with process isolation — they can't step on each other's work, and if one fails it doesn't take down the rest",
+      "Built a 15-page dashboard to watch it all happen: Kanban board, live terminals for each engineer, PR diffs, compliance checks",
+      "You can also trigger tasks from Slack or even a phone call (Twilio). Felt overkill but it's honestly useful",
+      "Added 12 chaos monkey scenarios because I kept finding weird edge cases — Unicode floods, rapid-fire inputs, that kind of thing",
     ],
     tech: [
       "Next.js 15",
@@ -60,12 +60,12 @@ const projects: Project[] = [
     title: "Eric Chatbot",
     role: "Solo Project",
     description:
-      'iMessage relationship analyzer — "I was down bad for a girl and built an entire AI-powered analytics platform to figure out if she liked me back."',
+      "I was down bad for a girl and built an entire AI-powered analytics platform to figure out if she liked me back. It imports your iMessage history and tells you what's really going on.",
     bullets: [
-      "Imports iMessage conversations, analyzes 10K+ messages using chunked AI analysis, generates relationship intelligence dashboards",
-      "Relationship scoring (0-100), RPG-style character sheets, green/red flag extraction, attachment style detection",
-      'Real-time coaching ("WHAT\'S MY MOVE?"), game plan generator, clone chat, journal',
-      "Cyberpunk dark theme with neon accents — built with zero frameworks (vanilla JS, no React)",
+      "Pulls in iMessage conversations, chunks them up, and runs AI analysis across 10K+ messages to build relationship dashboards",
+      "Gives you a relationship score (0-100), RPG-style character sheets for each person, green/red flag breakdowns, attachment style detection",
+      "Has a \"WHAT'S MY MOVE?\" button that gives you real-time coaching, plus a game plan generator and a clone chat mode",
+      "Cyberpunk dark theme with neon accents. Built the whole thing in vanilla JS — no React, no frameworks, just raw DOM manipulation",
     ],
     tech: [
       "Python",
