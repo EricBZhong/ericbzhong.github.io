@@ -5,6 +5,7 @@ import { SectionHeading } from "./SectionHeading";
 
 interface TimelineEntry {
   company: string;
+  monogram: string;
   role: string;
   dates: string;
   bullets: string[];
@@ -14,6 +15,7 @@ interface TimelineEntry {
 const timeline: TimelineEntry[] = [
   {
     company: "Colby",
+    monogram: "C",
     role: "Co-Founder & CTO",
     dates: "Jun 2025 – Present",
     bullets: [
@@ -24,6 +26,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Stealth Startup",
+    monogram: "S",
     role: "Software Engineer",
     dates: "Sep 2024 – Jun 2025",
     bullets: [
@@ -32,6 +35,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Arta Finance",
+    monogram: "AF",
     role: "Software Engineer, Risk + Research",
     dates: "May 2023 – Aug 2024",
     bullets: [
@@ -42,6 +46,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Caltech",
+    monogram: "CT",
     role: "AI & ML Post-Graduate Bootcamp",
     dates: "Jun 2022 – May 2023",
     bullets: [],
@@ -49,6 +54,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Coinbase",
+    monogram: "CB",
     role: "Software Engineer, Web3 Team",
     dates: "Mar 2022 – Jun 2022",
     bullets: [
@@ -59,6 +65,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Ainume",
+    monogram: "A",
     role: "Software Development Intern",
     dates: "Jul 2020 – Mar 2022",
     bullets: [
@@ -67,6 +74,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "UC Berkeley",
+    monogram: "Cal",
     role: "B.S. Engineering Physics",
     dates: "2017 – 2021",
     bullets: ["Minors in EECS and Environmental Economics & Policy"],
@@ -93,7 +101,7 @@ export function Experience() {
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
             >
-              <div className="relative flex gap-6 pb-10 last:pb-0">
+              <div className="relative flex gap-5 pb-10 last:pb-0">
                 {/* Timeline line + dot */}
                 <div className="flex flex-col items-center">
                   <div
@@ -108,6 +116,13 @@ export function Experience() {
                   {i < timeline.length - 1 && (
                     <div className="w-px flex-1 bg-gradient-to-b from-blue-500/40 to-transparent" />
                   )}
+                </div>
+
+                {/* Company monogram */}
+                <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/[0.06] border border-white/[0.08]">
+                  <span className="text-xs font-semibold text-blue-300/80">
+                    {entry.monogram}
+                  </span>
                 </div>
 
                 {/* Content */}

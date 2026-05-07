@@ -18,8 +18,67 @@ const languages = [
   "MATLAB",
 ];
 
+/* Small inline SVG icons for each skill category */
+function LayersIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <path d="m12 2 10 6-10 6L2 8z" /><path d="m2 12 10 6 10-6" /><path d="m2 16 10 6 10-6" />
+    </svg>
+  );
+}
+function MonitorIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+    </svg>
+  );
+}
+function ServerIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <rect x="2" y="2" width="20" height="8" rx="2" /><rect x="2" y="14" width="20" height="8" rx="2" /><circle cx="6" cy="6" r="1" fill="currentColor" /><circle cx="6" cy="18" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+function BrainIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <path d="M12 2a6 6 0 0 1 6 6c0 2-1 3.5-2 4.5V15a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.5C7 11.5 6 10 6 8a6 6 0 0 1 6-6Z" /><path d="M10 19v2M14 19v2M9 9h6" />
+    </svg>
+  );
+}
+function DatabaseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" /><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+    </svg>
+  );
+}
+function CloudIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <path d="M18 10a4 4 0 0 0-7.46-2A6 6 0 1 0 6 20h12a4 4 0 0 0 0-8Z" />
+    </svg>
+  );
+}
+function ShieldIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <path d="M12 2s8 4 8 10-8 10-8 10-8-4-8-10S12 2 12 2Z" /><path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+function CheckCircleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
 interface SkillCategory {
   title: string;
+  icon: React.ReactNode;
   items: string[];
   thoughts: string;
 }
@@ -27,6 +86,7 @@ interface SkillCategory {
 const categories: SkillCategory[] = [
   {
     title: "Architecture & System Design",
+    icon: <LayersIcon />,
     items: [
       "Multi-tier AI agent systems",
       "Real-time protocols (SSE, WebSocket)",
@@ -39,6 +99,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Frontend",
+    icon: <MonitorIcon />,
     items: [
       "React 19, Next.js 15, Angular",
       "Chrome Extensions (Manifest V3)",
@@ -51,6 +112,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Backend",
+    icon: <ServerIcon />,
     items: [
       "Python / FastAPI, Django",
       "Golang, Node.js / Express",
@@ -63,6 +125,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "AI & Agentic Systems",
+    icon: <BrainIcon />,
     items: [
       "Multi-agent orchestration (Google ADK)",
       "Gemini 3.1 Pro, Claude, voice AI",
@@ -75,6 +138,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Data & Databases",
+    icon: <DatabaseIcon />,
     items: [
       "DuckDB, Google Spanner, Firestore",
       "SQLite, Redis (30x latency reduction)",
@@ -87,6 +151,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Infrastructure & DevOps",
+    icon: <CloudIcon />,
     items: [
       "GCP Cloud Run, VPC, Secret Manager",
       "Terraform, Docker, GitHub Actions",
@@ -99,6 +164,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Security & Compliance",
+    icon: <ShieldIcon />,
     items: [
       "OAuth 2.0, JWT, Firebase Auth",
       "AES-256-GCM, ECDH P-256, CMEK",
@@ -111,6 +177,7 @@ const categories: SkillCategory[] = [
   },
   {
     title: "Testing & Quality",
+    icon: <CheckCircleIcon />,
     items: [
       "310+ unit & integration tests",
       "LLM-as-judge eval framework",
@@ -173,9 +240,14 @@ export function Skills() {
           {categories.map((cat, i) => (
             <FadeIn key={cat.title} delay={0.05 * i}>
               <div className="glass-card flex h-full flex-col p-5">
-                <h3 className="text-sm font-semibold text-foreground">
-                  {cat.title}
-                </h3>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+                    {cat.icon}
+                  </div>
+                  <h3 className="text-sm font-semibold text-foreground">
+                    {cat.title}
+                  </h3>
+                </div>
                 <ul className="mt-3 space-y-1.5 text-sm text-muted">
                   {cat.items.map((item) => (
                     <li key={item}>{item}</li>

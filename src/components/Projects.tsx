@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { FadeIn } from "./FadeIn";
 import { SectionHeading } from "./SectionHeading";
 
 interface Project {
@@ -12,12 +11,66 @@ interface Project {
   tech: string[];
   href?: string;
   linkLabel?: string;
+  icon: React.ReactNode;
+  gradient: string;
+}
+
+/* Inline SVG icons — one per project */
+function AgentIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+      <path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4Z" />
+      <path d="M20 21v-2a4 4 0 0 0-3-3.87M4 21v-2a4 4 0 0 1 3-3.87" />
+      <circle cx="12" cy="17" r="1" fill="currentColor" />
+      <path d="M9 17h6" />
+    </svg>
+  );
+}
+
+function TerminalIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m6 9 4 3-4 3" />
+      <path d="M14 15h4" />
+    </svg>
+  );
+}
+
+function MessageHeartIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M12 8c-1-1-3-1-3.5.5S9 11 12 13c3-2 3.5-3 3-4.5S13 7 12 8Z" />
+    </svg>
+  );
+}
+
+function ChartIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+      <path d="M3 3v18h18" />
+      <path d="m7 16 4-8 4 5 5-9" />
+    </svg>
+  );
+}
+
+function SyncIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+      <rect x="5" y="2" width="14" height="20" rx="2" />
+      <path d="M9 10h1.5a1.5 1.5 0 0 1 0 3H9v3" />
+      <circle cx="9" cy="7" r="0.5" fill="currentColor" />
+    </svg>
+  );
 }
 
 const projects: Project[] = [
   {
     title: "Colby AI",
     role: "Co-Founder & CTO",
+    icon: <AgentIcon />,
+    gradient: "from-blue-500/20 to-cyan-500/10",
     description:
       "Salespeople at asset management firms spend half their day typing into Salesforce instead of actually selling. We built a Chrome Extension that does it for them — data entry, reports, meeting prep, research — all through voice and chat.",
     bullets: [
@@ -42,6 +95,8 @@ const projects: Project[] = [
   {
     title: "Personal CTO Dashboard",
     role: "Solo Project",
+    icon: <TerminalIcon />,
+    gradient: "from-blue-500/15 to-indigo-500/10",
     description:
       "I wanted to see what happens if you give AI agents real autonomy over a codebase. You type a task in plain English, a CTO agent figures out what needs to happen, spins up engineer agents in parallel, and they each clone the repo, write code, run tests, and open a PR.",
     bullets: [
@@ -66,6 +121,8 @@ const projects: Project[] = [
   {
     title: "Eric Chatbot",
     role: "Solo Project",
+    icon: <MessageHeartIcon />,
+    gradient: "from-pink-500/15 to-blue-500/10",
     description:
       "I was down bad for a girl and built an entire AI-powered analytics platform to figure out if she liked me back. It imports your iMessage history and tells you what's really going on.",
     bullets: [
@@ -89,6 +146,8 @@ const projects: Project[] = [
   {
     title: "SPY Options Trader",
     role: "Solo Project",
+    icon: <ChartIcon />,
+    gradient: "from-emerald-500/15 to-cyan-500/10",
     description:
       "Algorithmic trading system for 0-3 DTE SPY options. Backtests four strategies — Iron Condor, Opening Range Breakout, Mean Reversion, and Gamma Scalp — with walk-forward validation, then paper trades them live through Alpaca.",
     bullets: [
@@ -114,6 +173,8 @@ const projects: Project[] = [
   {
     title: "LoveTogether",
     role: "Solo Project · In Progress",
+    icon: <SyncIcon />,
+    gradient: "from-violet-500/15 to-blue-500/10",
     description:
       "Mobile app that syncs a single master profile across multiple dating platforms. Mostly an excuse to build a clean adapter architecture and a local-first sync system on React Native.",
     bullets: [
@@ -182,60 +243,67 @@ export function Projects() {
         >
           {projects.map((project) => {
             const cardClass =
-              "glass-card gradient-border group flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:glow-sm";
+              "glass-card gradient-border group flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:glow-sm";
 
             const content = (
               <>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {project.title}
-                    </h3>
-                    <span className="mt-1 inline-block rounded-full bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 text-xs font-medium text-blue-300">
-                      {project.role}
-                    </span>
-                  </div>
-                  {project.href && (
-                    <span className="text-muted transition-colors group-hover:text-accent">
-                      <ArrowIcon />
-                    </span>
-                  )}
+                {/* Visual header */}
+                <div className={`flex items-center justify-center bg-gradient-to-br ${project.gradient} px-6 py-6 text-blue-300/60`}>
+                  {project.icon}
                 </div>
 
-                <p className="mt-4 text-sm leading-relaxed text-muted">
-                  {project.description}
-                </p>
-
-                <ul className="mt-4 space-y-2 text-sm text-muted">
-                  {project.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto pt-6">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 text-xs text-blue-300"
-                      >
-                        {t}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {project.title}
+                      </h3>
+                      <span className="mt-1 inline-block rounded-full bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 text-xs font-medium text-blue-300">
+                        {project.role}
                       </span>
-                    ))}
+                    </div>
+                    {project.href && (
+                      <span className="text-muted transition-colors group-hover:text-accent">
+                        <ArrowIcon />
+                      </span>
+                    )}
                   </div>
-                  {project.href ? (
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
-                      {project.linkLabel}
-                      <ArrowIcon />
-                    </span>
-                  ) : (
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-muted">
-                      Coming Soon
-                    </span>
-                  )}
+
+                  <p className="mt-4 text-sm leading-relaxed text-muted">
+                    {project.description}
+                  </p>
+
+                  <ul className="mt-4 space-y-2 text-sm text-muted">
+                    {project.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-6">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-md bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 text-xs text-blue-300"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {project.href ? (
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
+                        {project.linkLabel}
+                        <ArrowIcon />
+                      </span>
+                    ) : (
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-muted">
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
                 </div>
               </>
             );
