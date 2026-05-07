@@ -3,9 +3,85 @@
 import { motion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 
+/* ── Company logo SVGs ─────────────────────────────────── */
+
+// Colby — minimal "C" in a rounded square, matching their modern SaaS branding
+function ColbyLogo() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-5 w-5">
+      <rect x="2" y="2" width="28" height="28" rx="6" fill="#1a1a2e" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+      <text x="16" y="21" textAnchor="middle" fill="#e4e4e7" fontSize="14" fontWeight="700" fontFamily="system-ui, sans-serif">C</text>
+    </svg>
+  );
+}
+
+// Stealth — lock icon (NDA)
+function StealthLogo() {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <rect x="7" y="14" width="18" height="13" rx="2" fill="rgba(255,255,255,0.06)" />
+      <path d="M11 14v-3a5 5 0 0 1 10 0v3" />
+      <circle cx="16" cy="21" r="1.5" fill="rgba(255,255,255,0.4)" />
+    </svg>
+  );
+}
+
+// Arta Finance — stylized "A" in a premium style
+function ArtaLogo() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-5 w-5">
+      <rect x="2" y="2" width="28" height="28" rx="6" fill="#1a1a2e" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+      <path d="M16 8 L22 24 L20 24 L18.5 20 L13.5 20 L12 24 L10 24 Z M14.2 18.5 L17.8 18.5 L16 12.5 Z" fill="#c8f2fd" />
+    </svg>
+  );
+}
+
+// Caltech — "CIT" in Caltech Orange
+function CaltechLogo() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-5 w-5">
+      <rect x="2" y="2" width="28" height="28" rx="6" fill="#1a1a2e" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+      <text x="16" y="21" textAnchor="middle" fill="#FF6C0C" fontSize="10" fontWeight="700" fontFamily="system-ui, sans-serif">CIT</text>
+    </svg>
+  );
+}
+
+// Coinbase — blue circle with negative-space "C" (square cutout opening to the right)
+function CoinbaseLogo() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-5 w-5">
+      <circle cx="16" cy="16" r="13" fill="#1652F0" />
+      <rect x="13" y="12" width="9" height="8" rx="1" fill="#1a1a2e" />
+    </svg>
+  );
+}
+
+// Ainume — medical cross (telehealth)
+function AinumeLogo() {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" className="h-5 w-5">
+      <rect x="2" y="2" width="28" height="28" rx="6" fill="#1a1a2e" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+      <rect x="14" y="9" width="4" height="14" rx="1" fill="rgba(255,255,255,0.5)" />
+      <rect x="9" y="14" width="14" height="4" rx="1" fill="rgba(255,255,255,0.5)" />
+    </svg>
+  );
+}
+
+// UC Berkeley — script "Cal" in Berkeley Blue on gold
+function BerkeleyLogo() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-5 w-5">
+      <rect x="2" y="2" width="28" height="28" rx="6" fill="#003262" />
+      <text x="16" y="21.5" textAnchor="middle" fill="#FDB515" fontSize="12" fontWeight="700" fontStyle="italic" fontFamily="Georgia, serif">Cal</text>
+    </svg>
+  );
+}
+
+/* ── Data ───────────────────────────────────────────────── */
+
 interface TimelineEntry {
   company: string;
-  monogram: string;
+  logo: React.ReactNode;
   role: string;
   dates: string;
   bullets: string[];
@@ -15,7 +91,7 @@ interface TimelineEntry {
 const timeline: TimelineEntry[] = [
   {
     company: "Colby",
-    monogram: "C",
+    logo: <ColbyLogo />,
     role: "Co-Founder & CTO",
     dates: "Jun 2025 – Present",
     bullets: [
@@ -26,7 +102,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Stealth Startup",
-    monogram: "S",
+    logo: <StealthLogo />,
     role: "Software Engineer",
     dates: "Sep 2024 – Jun 2025",
     bullets: [
@@ -35,7 +111,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Arta Finance",
-    monogram: "AF",
+    logo: <ArtaLogo />,
     role: "Software Engineer, Risk + Research",
     dates: "May 2023 – Aug 2024",
     bullets: [
@@ -46,7 +122,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Caltech",
-    monogram: "CT",
+    logo: <CaltechLogo />,
     role: "AI & ML Post-Graduate Bootcamp",
     dates: "Jun 2022 – May 2023",
     bullets: [],
@@ -54,7 +130,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Coinbase",
-    monogram: "CB",
+    logo: <CoinbaseLogo />,
     role: "Software Engineer, Web3 Team",
     dates: "Mar 2022 – Jun 2022",
     bullets: [
@@ -65,7 +141,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "Ainume",
-    monogram: "A",
+    logo: <AinumeLogo />,
     role: "Software Development Intern",
     dates: "Jul 2020 – Mar 2022",
     bullets: [
@@ -74,7 +150,7 @@ const timeline: TimelineEntry[] = [
   },
   {
     company: "UC Berkeley",
-    monogram: "Cal",
+    logo: <BerkeleyLogo />,
     role: "B.S. Engineering Physics",
     dates: "2017 – 2021",
     bullets: ["Minors in EECS and Environmental Economics & Policy"],
@@ -82,9 +158,11 @@ const timeline: TimelineEntry[] = [
   },
 ];
 
+/* ── Component ─────────────────────────────────────────── */
+
 export function Experience() {
   return (
-    <section id="experience" className="px-6 py-24">
+    <section id="experience" className="bg-white/[0.02] px-6 py-24">
       <div className="mx-auto max-w-5xl">
         <SectionHeading>Experience</SectionHeading>
 
@@ -118,11 +196,9 @@ export function Experience() {
                   )}
                 </div>
 
-                {/* Company monogram */}
-                <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/[0.06] border border-white/[0.08]">
-                  <span className="text-xs font-semibold text-blue-300/80">
-                    {entry.monogram}
-                  </span>
+                {/* Company logo */}
+                <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center">
+                  {entry.logo}
                 </div>
 
                 {/* Content */}

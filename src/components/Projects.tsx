@@ -55,12 +55,10 @@ function ChartIcon() {
   );
 }
 
-function SyncIcon() {
+function HeartIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-      <rect x="5" y="2" width="14" height="20" rx="2" />
-      <path d="M9 10h1.5a1.5 1.5 0 0 1 0 3H9v3" />
-      <circle cx="9" cy="7" r="0.5" fill="currentColor" />
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" />
     </svg>
   );
 }
@@ -173,7 +171,7 @@ const projects: Project[] = [
   {
     title: "LoveTogether",
     role: "Solo Project · In Progress",
-    icon: <SyncIcon />,
+    icon: <HeartIcon />,
     gradient: "from-violet-500/15 to-blue-500/10",
     description:
       "Mobile app that syncs a single master profile across multiple dating platforms. Mostly an excuse to build a clean adapter architecture and a local-first sync system on React Native.",

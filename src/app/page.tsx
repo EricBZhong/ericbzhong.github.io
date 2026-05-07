@@ -1,5 +1,4 @@
 import { Hero } from "@/components/Hero";
-import { Stats } from "@/components/Stats";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Experience } from "@/components/Experience";
@@ -17,7 +16,6 @@ export default function Home() {
 
       <div className="relative z-[1]">
         <Hero />
-        <Stats />
         <Projects />
         <Skills />
         <Experience />
