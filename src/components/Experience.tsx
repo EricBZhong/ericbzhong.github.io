@@ -1,4 +1,6 @@
-import { FadeIn } from "./FadeIn";
+"use client";
+
+import { motion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 
 interface TimelineEntry {
@@ -80,17 +82,31 @@ export function Experience() {
 
         <div className="mt-12 space-y-0">
           {timeline.map((entry, i) => (
-            <FadeIn key={entry.company + entry.dates} delay={i * 0.05}>
+            <motion.div
+              key={entry.company + entry.dates}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.05,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
               <div className="relative flex gap-6 pb-10 last:pb-0">
-                {/* Timeline line */}
+                {/* Timeline line + dot */}
                 <div className="flex flex-col items-center">
                   <div
                     className={`mt-1.5 h-3 w-3 rounded-full ${
-                      entry.isEducation ? "border-2 border-border bg-white" : "bg-accent"
+                      entry.isEducation
+                        ? "border-2 border-white/20 bg-transparent"
+                        : i === 0
+                        ? "bg-gradient-to-r from-blue-500 to-cyan-500 animate-pulse-glow"
+                        : "bg-gradient-to-r from-blue-500 to-blue-600"
                     }`}
                   />
                   {i < timeline.length - 1 && (
-                    <div className="w-px flex-1 bg-border" />
+                    <div className="w-px flex-1 bg-gradient-to-b from-blue-500/40 to-transparent" />
                   )}
                 </div>
 
@@ -108,7 +124,7 @@ export function Experience() {
                     <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-muted">
                       {entry.bullets.map((bullet) => (
                         <li key={bullet} className="flex gap-2">
-                          <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-border" />
+                          <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-white/20" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -116,7 +132,7 @@ export function Experience() {
                   )}
                 </div>
               </div>
-            </FadeIn>
+            </motion.div>
           ))}
         </div>
       </div>

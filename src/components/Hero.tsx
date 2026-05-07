@@ -1,5 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { motion } from "motion/react";
+
+const Scene = dynamic(() => import("./Scene").then((mod) => ({ default: mod.Scene })), {
+  ssr: false,
+});
+
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
@@ -33,45 +40,80 @@ function MailIcon() {
   );
 }
 
+const staggerContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
 export function Hero() {
   return (
-    <section className="flex min-h-[100dvh] items-center justify-center px-6">
-      <div className="max-w-2xl">
-        <div className="hero-stagger mb-6" style={{ "--i": 0 } as React.CSSProperties}>
+    <section className="relative flex min-h-[100dvh] items-center justify-center px-6">
+      {/* 3D particle background */}
+      <div className="absolute inset-0 z-0">
+        <Scene />
+      </div>
+
+      {/* Radial gradient overlay for readability */}
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_20%,#0a0a0f_70%)]" />
+
+      {/* Content */}
+      <motion.div
+        className="relative z-[2] max-w-2xl"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div variants={staggerItem} className="mb-6">
           <img
             src="/eric.jpg"
             alt="Eric Zhong"
-            className="h-24 w-24 rounded-full object-cover"
+            className="h-24 w-24 rounded-full object-cover ring-2 ring-white/10"
           />
-        </div>
-        <h1
-          className="hero-stagger text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-          style={{ "--i": 1 } as React.CSSProperties}
+        </motion.div>
+
+        <motion.h1
+          variants={staggerItem}
+          className="font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
         >
           Eric Zhong
-        </h1>
-        <p
-          className="hero-stagger mt-4 text-xl text-muted sm:text-2xl"
-          style={{ "--i": 2 } as React.CSSProperties}
+        </motion.h1>
+
+        <motion.p
+          variants={staggerItem}
+          className="mt-4 text-xl text-muted sm:text-2xl"
         >
           I build products from zero to one.
-        </p>
-        <p
-          className="hero-stagger mt-3 text-base text-muted sm:text-lg"
-          style={{ "--i": 3 } as React.CSSProperties}
+        </motion.p>
+
+        <motion.p
+          variants={staggerItem}
+          className="mt-3 text-base text-muted sm:text-lg"
         >
           Co-Founder &amp; CTO at Colby. Previously at Arta Finance and Coinbase.
-        </p>
+        </motion.p>
 
-        <div
-          className="hero-stagger mt-8 flex items-center gap-5"
-          style={{ "--i": 4 } as React.CSSProperties}
+        <motion.div
+          variants={staggerItem}
+          className="mt-8 flex items-center gap-5"
         >
           <a
             href="https://github.com/EricBZhong"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted transition-all hover:text-accent hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
             aria-label="GitHub"
           >
             <GitHubIcon />
@@ -80,24 +122,24 @@ export function Hero() {
             href="https://linkedin.com/in/eric-z-422556192"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted transition-all hover:text-accent hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
             aria-label="LinkedIn"
           >
             <LinkedInIcon />
           </a>
           <a
             href="mailto:ezhong99@gmail.com"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted transition-all hover:text-accent hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
             aria-label="Email"
           >
             <MailIcon />
           </a>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
-        <div
-          className="hero-stagger mt-16 flex justify-start"
-          style={{ "--i": 5 } as React.CSSProperties}
+        <motion.div
+          variants={staggerItem}
+          className="mt-16 flex justify-start"
         >
           <div className="scroll-bounce text-muted/40">
             <svg
@@ -113,8 +155,8 @@ export function Hero() {
               <path d="m6 9 6 6 6-6" />
             </svg>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

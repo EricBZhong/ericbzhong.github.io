@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { FadeIn } from "./FadeIn";
 import { SectionHeading } from "./SectionHeading";
 
@@ -120,31 +123,56 @@ const categories: SkillCategory[] = [
   },
 ];
 
+const pillStagger = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.03,
+    },
+  },
+};
+
+const pillItem = {
+  hidden: { opacity: 0, scale: 0.8 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
 export function Skills() {
   return (
-    <section id="skills" className="bg-card px-6 py-24">
+    <section id="skills" className="px-6 py-24">
       <div className="mx-auto max-w-5xl">
         <SectionHeading>Skills &amp; Expertise</SectionHeading>
 
         {/* Language pills */}
         <FadeIn delay={0.1}>
-          <div className="mt-8 flex flex-wrap gap-2">
+          <motion.div
+            className="mt-8 flex flex-wrap gap-2"
+            variants={pillStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             {languages.map((lang) => (
-              <span
+              <motion.span
                 key={lang}
-                className="rounded-full border border-border bg-white px-3 py-1 text-sm font-medium text-foreground"
+                variants={pillItem}
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-foreground transition-all hover:border-blue-500/30 hover:bg-blue-500/10 hover:glow-sm"
               >
                 {lang}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
         </FadeIn>
 
         {/* Category grid */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {categories.map((cat, i) => (
             <FadeIn key={cat.title} delay={0.05 * i}>
-              <div className="flex h-full flex-col rounded-xl border border-border bg-white p-5">
+              <div className="glass-card flex h-full flex-col p-5">
                 <h3 className="text-sm font-semibold text-foreground">
                   {cat.title}
                 </h3>
@@ -153,7 +181,7 @@ export function Skills() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <div className="mt-4 border-t border-border pt-4">
+                <div className="mt-4 border-l-2 border-blue-500/30 pl-4 pt-4">
                   <p className="text-xs font-medium text-foreground/70">
                     Eric&apos;s thoughts:
                   </p>

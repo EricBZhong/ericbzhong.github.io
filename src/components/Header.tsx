@@ -54,7 +54,7 @@ export function Header() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "border-b border-border bg-white/80 backdrop-blur-md"
+          ? "border-b border-white/[0.06] bg-background/60 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -89,7 +89,7 @@ export function Header() {
             href="/Eric_Zhong_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-80"
+            className="rounded-full bg-amber-500/15 border border-amber-500/30 px-4 py-1.5 text-sm font-medium text-amber-300 transition-all hover:bg-amber-500/25 hover:border-amber-500/50"
           >
             Resume
           </a>
@@ -119,9 +119,9 @@ export function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — glass panel */}
       {mobileOpen && (
-        <div className="border-b border-border bg-white/95 backdrop-blur-md px-6 pb-4 md:hidden">
+        <div className="border-b border-white/[0.06] bg-background/80 backdrop-blur-xl px-6 pb-4 md:hidden">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -136,7 +136,7 @@ export function Header() {
             href="/Eric_Zhong_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-block rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-white"
+            className="mt-2 inline-block rounded-full bg-amber-500/15 border border-amber-500/30 px-4 py-1.5 text-sm font-medium text-amber-300"
           >
             Resume
           </a>

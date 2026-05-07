@@ -1,10 +1,17 @@
+"use client";
+
 import { FadeIn } from "./FadeIn";
 import { SectionHeading } from "./SectionHeading";
 
 export function About() {
   return (
-    <section id="about" className="bg-card px-6 py-24">
-      <div className="mx-auto max-w-3xl">
+    <section id="about" className="relative px-6 py-24">
+      {/* Large blurred radial glow */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.03] blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-3xl">
         <SectionHeading>About</SectionHeading>
 
         <div className="mt-8 space-y-5 text-base leading-relaxed text-muted">
